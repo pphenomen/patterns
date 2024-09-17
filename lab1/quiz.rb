@@ -21,3 +21,11 @@ case favourite_language
 	else
 		puts "Если любишь - отпусти... скоро будет ruby"
 end
+
+# Просим пользователя ввести команду языка ruby
+puts "Введи команду языка ruby"
+eval(STDIN.gets.chomp) # eval выполняет команду ruby
+
+# Просим пользователя ввести команду ОС
+puts "Введи команду операционной системы"
+system(STDIN.gets.chomp) # system выполняет команду ОС
