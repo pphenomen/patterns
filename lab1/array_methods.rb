@@ -20,14 +20,39 @@ def find_first_positive_index(array)
 	nil
 end
 
-array = [-5,-2,1,6,13]
+if ARGV.size != 2
+  puts "Неверное количество аргументов. Пример использования: ruby program.rb <method> <file>"
+  exit
+end
 
-if array.empty?
-	puts "Массив пустой!"
+method = ARGV[0] # первый аргумент - метод
+file_path = ARGV[1] # второй аргумент - путь к файлу
+
+# Чтение данных из файла
+if File.exist?(file_path)
+  content = File.read(file_path) # читаем содержимое файла как строку
+  array = content.split.map(&:to_i) # разделяем строку на части и преобразуем в числа
 else
-	min = find_min(array)
-	puts "Минимальный элемент: #{min}"
+  puts "Файл не найден: #{file_path}" # сообщение, если файл не найден
+  exit                             
+end
 
-	first_positive_index = find_first_positive_index(array)
-	puts "Номер первого положительного элемента: #{first_positive_index}"
+# В зависимости от выбранного метода, вызываем соответствующую функцию
+case method
+when "find_min"
+  result = find_min(array)
+  if result.nil?
+    puts "Массив пустой!"
+  else
+    puts "Минимальный элемент: #{result}"
+  end
+when "find_first_positive_index"
+  result = find_first_positive_index(array)
+  if result.nil?
+    puts "Положительные элементы отсутствуют!"
+  else
+    puts "Номер первого положительного элемента: #{result}"
+  end
+else
+  puts "Неверное название метода. Доступные методы: find_min, find_first_positive_index"
 end
