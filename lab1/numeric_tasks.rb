@@ -30,3 +30,52 @@ def sum_of_digits_div_by_3(number)
   
   puts "Сумма цифр числа, делящихся на 3: #{sum_digits}"
 end
+
+# Метод 3. Найти делитель числа, являющийся взаимно простым с наибольшим количеством цифр данного числа
+# Поиск делителей числа
+def find_divisors(number)
+  divisors = [] 
+  (1..number).each do |divisor|
+    divisors << divisor if number % divisor == 0 # проверяем, делится ли число на делитель без остатка, если да, то добавляем в массив 
+  end
+  divisors
+end
+# Нахождение цифр числа
+def get_digits(number)
+  digits = []
+  if number == 0 # проверка на ноль, чтобы избежать получения пустого массива 
+  	digits << 0
+  else
+  	while number > 0
+  		digits << number % 10 # добавляем крайнюю цифру числа
+	    number /= 10 # убираем крайнюю цифру
+	end
+  end
+  digits.reverse # разворачиваем массив, чтобы получить цифры в правильном порядке
+end
+# Поиск количества взаимно простых цифр
+def count_coprime_digits(divisor, number)
+	digits = get_digits(number)
+	count = 0
+	digits.each do |digit| # проходим по каждой цифре из массива digits и считаем количество взаимно простых цифр
+		next if digit == 0 # пропуск нуля, т.к. нод(число,0) = число, => проверка не имеет смысла
+		count += 1 if gcd(divisor,digit) == 1
+	end
+	count
+end
+# Поиск делителя, который является взаимно простым с наибольшим количеством цифр числа
+def find_right_divisor(number)
+	divisors = find_divisors(number)
+	right_divisor = nil
+	max_coprime_digits = 0
+
+	divisors.each do |divisor| # проходим по каждому делителю 
+		coprime_digits = count_coprime_digits(divisor, number) # вычисляется количество цифр числа, которые являются взаимно простыми с делителем и передаются в массив
+		if coprime_digits > max_coprime_digits # если текущее количество взаимно простых цифр больше предыдущего максимального, обнrовляем значение максимального и сохраняем текущий делитель как правильный
+			max_coprime_digits = coprime_digits 
+			right_divisor = divisor
+		end
+	end
+
+	puts "Делитель, который является взаимно простым с наибольшим количеством цифр числа: #{right_divisor}"
+end
