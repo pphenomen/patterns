@@ -14,7 +14,7 @@ def count_coprimes(number)
 	(1..number).each do |current_number| 
 		count += 1 if gcd(number, current_number) == 1 
 	end
-	puts "Количество чисел, взаимно простых с заданным: #{count}"
+	count
 end
 
 # Метод 2. Найти сумму цифр числа, делящихся на 3
@@ -27,8 +27,7 @@ def sum_of_digits_div_by_3(number)
     sum_digits += digit if digit % 3 == 0 # добавляем цифру к сумме, если подходит под условие
     number /= 10 # отбрасываем крайнюю цифру, чтобы обработать следующую
   end
-  
-  puts "Сумма цифр числа, делящихся на 3: #{sum_digits}"
+  sum_digits
 end
 
 # Метод 3. Найти делитель числа, являющийся взаимно простым с наибольшим количеством цифр данного числа
@@ -49,7 +48,7 @@ def get_digits(number)
   	while number > 0
   		digits << number % 10 # добавляем крайнюю цифру числа
 	    number /= 10 # убираем крайнюю цифру
-	end
+	  end
   end
   digits.reverse # разворачиваем массив, чтобы получить цифры в правильном порядке
 end
@@ -76,6 +75,5 @@ def find_right_divisor(number)
 			right_divisor = divisor
 		end
 	end
-
-	puts "Делитель, который является взаимно простым с наибольшим количеством цифр числа: #{right_divisor}"
+	right_divisor
 end
