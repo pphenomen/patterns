@@ -55,4 +55,10 @@ class Student
 	def git=(new_git)
 		@git = new_git
 	end
+
+	def to_s
+  		"ФИО: #{second_name} #{first_name} #{patronymic}, ID: #{id || 'не указан'}, Телефон: #{phone_number || 'не указан'}, Git: #{git || 'не указан'}"
+	end
+
+
 end
