@@ -47,11 +47,7 @@ class Student
 	end
 
 	def self.valid_phone_number?(phone_number)
-		if phone_number =~ (/\A\d{11}\z/)
-			true
-		else
-			false
-		end
+		phone_number.match?(/\A\d{11}\z/)
   	end
 
   	def phone_number=(phone_number)
@@ -71,6 +67,24 @@ class Student
   		end
   		@git = git 
   	end
+
+  	def git_present?
+  		!git.nil?
+	end
+
+	def contact_present?
+		!phone_number.nil?
+	end  
+
+	def validate
+		unless git_present?
+			raise "Git отсутствует"
+		end
+
+		unless contact_present?
+			raise "Необходимо указать номер телефона для связи"
+		end
+	end
 
 	def to_s
   		"ФИО: #{second_name} #{first_name} #{patronymic}, ID: #{id || 'не указан'}, Телефон: #{phone_number || 'не указан'}, Git: #{git || 'не указан'}"
