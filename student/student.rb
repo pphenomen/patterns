@@ -1,14 +1,16 @@
 class Student
-	attr_accessor :id, :phone_number, :git
-	attr_reader :second_name, :first_name, :patronymic
+	attr_reader :second_name, :first_name, :patronymic, :id, :phone_number, :git
 
 	def initialize(hash_params = {})
 		self.second_name = hash_params[:second_name] 
 		self.first_name = hash_params[:first_name]
 		self.patronymic = hash_params[:patronymic]
 		self.id = hash_params[:id] if hash_params[:id]
-    	self.phone_number = hash_params[:phone_number]  if hash_params[:phone_number]
 		self.git = hash_params[:git] if hash_params[:git]
+	end
+
+	def set_contacts(hash_params={})
+		self.phone_number = hash_params[:phone_number]  if hash_params[:phone_number]
 	end
 
 	def self.valid_fullname?(fullname)
@@ -50,7 +52,7 @@ class Student
 		phone_number.match?(/\A\d{11}\z/)
   	end
 
-  	def phone_number=(phone_number)
+  	private def phone_number=(phone_number)
     	unless Student.valid_phone_number?(phone_number) 
     		raise "Номер телефона некорректный" 
     	end
@@ -63,7 +65,7 @@ class Student
 
   	def git=(git)
   		unless Student.valid_git?(git)
-  			raise "Git некорректный. Пример: https://github.com/username"
+  			raise "Git некорректный. Пример: github.com/username"
   		end
   		@git = git 
   	end
