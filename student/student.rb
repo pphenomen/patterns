@@ -21,6 +21,7 @@ class Student
 		unless Student.valid_fullname?(second_name)
 			raise "Фамилия должна быть указана и содержать только буквы"
 		end
+		@second_name = second_name
 	end
 
 	def first_name=(first_name)
@@ -91,4 +92,25 @@ class Student
 	def to_s
   		"ФИО: #{second_name} #{first_name} #{patronymic}, ID: #{id || 'не указан'}, Телефон: #{phone_number || 'не указан'}, Git: #{git || 'не указан'}"
 	end
+
+	def initials
+		"#{second_name} #{first_name[0]}.#{patronymic[0]}."
+	end
+
+	def git_link
+		git || "Git отсутствует"
+	end
+
+	def contact
+		if phone_number
+			"(номер телефона): #{phone_number}"
+		else 
+			"Контакт отсутствует"
+		end
+	end
+
+	def get_info
+		"Фамилия И.О.: #{initials}; Git: #{git_link}, Связь#{contact}"
+	end
 end
+

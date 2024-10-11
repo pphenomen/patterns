@@ -1,13 +1,8 @@
 require './student.rb'
 
-student1 = Student.new(
-	second_name: "Ivanov", 
-	first_name: "Ivan", 
-	patronymic: "Ivanovich",
-	id: 1,
-	phone_number: "89287142211",
-	git: "github.com/ivan"
-)
+student1 = Student.new({second_name: "Иванов", first_name: "Иван", patronymic: "Иванович", git: "github.com/ivanov"})
+student1.set_contacts({phone_number: "89123456789"})
+
 student2 = Student.new(
 	second_name: "Petrov", 
 	first_name: "Petr", 
@@ -16,15 +11,6 @@ student2 = Student.new(
 	phone_number: "89674549878", 
 	git: "github.com/petr"
 )
-student3 = Student.new(
-	second_name: "Sidorova", 
-	first_name: "Maria", 
-	patronymic: "Ivanovna", 
-	id: 3, 
-	phone_number: nil, 
-	git: nil
-)
 
-puts student1
+puts student1.get_info
 puts student2
-puts student3
