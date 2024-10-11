@@ -114,3 +114,29 @@ class Student
 	end
 end
 
+class StudentShort
+	attr_reader :id, :surname_initials, :git, :contact 
+
+	def initialize(id, surname_initials, git, contact)
+		@id = id
+    	@surname_initials = surname_initials
+    	@git = git
+    	@contact = contact
+	end
+
+	def self.from_student(student)
+		new(student.id, student.initials, student.git_link, student.contact)
+	end
+
+	def self.from_string(id, info_string)
+		info = info_string.split(", ")
+		surname_initials = info[0]
+		git = info[1] || "Git отсутствует"
+		contact = info[2] || "Контакт отсутствует"
+		new(id, surname_initials, git, contact) 
+	end
+
+	def to_s
+    	"ID: #{@id}, Фамилия И.О.: #{@surname_initials}, Git: #{@git}, Контакт: #{@contact}"
+  	end
+end	
