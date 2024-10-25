@@ -17,3 +17,8 @@ def count_between_mins(arr)
 
 	arr[first_min_index + 1...last_min_index].size
 end
+
+# 1.38 Дан целочисленный массив и отрезок a..b. Необходимо найти количество элементов, значение которых принадлежит этому отрезку.
+def count_in_section(arr)
+	arr.count { |num| num.between?(a,b)}
+end
