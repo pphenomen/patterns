@@ -8,10 +8,10 @@ class Student < Person
   	TELEGRAM_REGEX = /\A[a-zA-Z0-9_]{5,32}\z/
   	FULLNAME_REGEX = /\A[А-Яа-яЁёA-Za-z]+\z/
 
-	def initialize(second_name, first_name, patronymic, hash_params = {id: nil, git: nil, phone_number: nil, email: nil, telegram: nil})
-		self.second_name = second_name
-		self.first_name = first_name
-		self.patronymic = patronymic
+	def initialize(hash_params = {second_name:, first_name:, patronymic:, id: nil, git: nil, phone_number: nil, email: nil, telegram: nil}) 
+		self.second_name = hash_params[:second_name]
+		self.first_name = hash_params[:first_name]
+		self.patronymic = hash_params[:patronymic]
 		super(id: hash_params[:id], git: hash_params[:git])
 		self.set_contacts(phone_number: hash_params[:phone_number], email: hash_params[:email], telegram: hash_params[:telegram])
 	end
@@ -84,9 +84,9 @@ class Student < Person
 
 	def contact
 		contacts = []
-    	contacts << "номер телефона: #{phone_number}" if phone_number
-    	contacts << "почта: #{email}" if email
-    	contacts << "телеграм: #{telegram}" if telegram
+    	contacts << "номер телефона - #{phone_number}" if phone_number
+    	contacts << "почта - #{email}" if email
+    	contacts << "телеграм - #{telegram}" if telegram
     	contacts.empty? ? "Нет контактной информации" : contacts.join(", ")
 	end
 

@@ -8,6 +8,8 @@ class Person
     	self.git = git if git
 	end
 
+	private 
+	
 	# setters 
 	def id=(id)
 		unless Person.valid_id?(id)
