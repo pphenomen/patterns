@@ -22,4 +22,9 @@ class ArrayProcessor
     	end
     	result
     end
+
+	# 26. one?
+	def one?(&block)
+  		@arr.count(&block) == 1
+	end
 end
