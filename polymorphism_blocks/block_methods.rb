@@ -22,3 +22,8 @@ end
 def count_in_section(arr)
 	arr.count { |num| num.between?(a,b)}
 end
+
+# 1.50 Для двух введенных списков L1 и L2 построить новый список, состоящий из элементов, встречающихся только в одном из этих списков и не повторяющихся в них.
+def create_list_of_unique_elements(l1,l2)
+	(l1 | l2) - (l1 & l2)
+end
