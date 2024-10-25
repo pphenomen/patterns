@@ -13,4 +13,13 @@ class ArrayProcessor
 		end
 		true
 	end
+
+	# 14. flat_map
+	def flat_map(&block)
+		result = []
+		@arr.each do |element|
+      		result.concat(block.call(element))
+    	end
+    	result
+    end
 end
