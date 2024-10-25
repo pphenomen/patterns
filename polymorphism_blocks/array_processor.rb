@@ -27,4 +27,13 @@ class ArrayProcessor
 	def one?(&block)
   		@arr.count(&block) == 1
 	end
+
+	# 35. inject 
+	def inject(initial = nil, &block)
+		result = initial
+	  	@arr.each do |element|
+	    	result = block.call(result, element)
+	  	end
+	  	result
+	end
 end
