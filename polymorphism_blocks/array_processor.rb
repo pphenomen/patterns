@@ -27,7 +27,7 @@ class ArrayProcessor
 	def one?(&block)
   		@arr.count(&block) == 1
 	end
-
+	
 	# 35. inject 
 	def inject(initial = nil, &block)
 		result = initial
@@ -51,4 +51,12 @@ class ArrayProcessor
 	    end
 	    min_element
 	end
+    
+	# 11. find
+	def find(&block)
+    	@arr.each do |element|
+      		return element if block.call(element)
+    	end
+    	nil
+    end
 end
