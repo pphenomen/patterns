@@ -36,4 +36,19 @@ class ArrayProcessor
 	  	end
 	  	result
 	end
+
+	# 23. min_by
+	def min_by(&block)
+		min_element = @arr.first
+	    min_value = block.call(min_element)
+
+	    @arr.each do |element|
+	    	value = block.call(element)
+		    if value < min_value
+		    	min_value = value
+		        min_element = element
+		    end
+	    end
+	    min_element
+	end
 end
