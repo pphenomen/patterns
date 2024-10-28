@@ -3,7 +3,7 @@ def find_min_index(arr)
 	arr.index(arr.min)
 end
 
-# 1.14 Дан целочисленный массив и интервал a..b. Необходимо найти количество элементов в этом интервале.
+# 1.14 1.38 Дан целочисленный массив и интервал a..b. Необходимо найти количество элементов в этом интервале.
 def count_in_interval(arr, a, b)
 	arr.count { |num| num.between?(a,b) }
 end
@@ -16,11 +16,6 @@ def count_between_mins(arr)
 	return 0 if first_min_index == last_min_index 
 
 	arr[first_min_index + 1...last_min_index].size
-end
-
-# 1.38 Дан целочисленный массив и отрезок a..b. Необходимо найти количество элементов, значение которых принадлежит этому отрезку.
-def count_in_section(arr, a, b)
-	arr.count { |num| num.between?(a,b)}
 end
 
 # 1.50 Для двух введенных списков L1 и L2 построить новый список, состоящий из элементов, встречающихся только в одном из этих списков и не повторяющихся в них.
@@ -61,7 +56,7 @@ when 3
 when 4
 	arr = input_array
 	a, b = input_interval
-	puts "Количество элементов в отрезке #{a}..#{b}: #{count_in_section(arr, a, b)}"
+	puts "Количество элементов в отрезке #{a}..#{b}: #{count_in_interval(arr, a, b)}"
 when 5
 	puts "Введите список чисел L1 (через пробел):"
   	l1 = gets.chomp.split.map(&:to_i)
