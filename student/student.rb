@@ -8,27 +8,40 @@ class Student < Person
   	TELEGRAM_REGEX = /\A[a-zA-Z0-9_]{5,32}\z/
   	FULLNAME_REGEX = /\A[А-Яа-яЁёA-Za-z]+\z/
 
-	def initialize(hash_params = {second_name:, first_name:, patronymic:, id: nil, git: nil, phone_number: nil, email: nil, telegram: nil}) 
-		self.second_name = hash_params[:second_name]
-		self.first_name = hash_params[:first_name]
-		self.patronymic = hash_params[:patronymic]
-		super(id: hash_params[:id], git: hash_params[:git])
-		self.set_contacts(phone_number: hash_params[:phone_number], email: hash_params[:email], telegram: hash_params[:telegram])
+	def initialize(second_name:, first_name:, patronymic:, id: nil, git: nil, phone_number: nil, email: nil, telegram: nil) 
+		self.second_name = second_name
+		self.first_name = first_name
+		self.patronymic = patronymic
+		super(id: id, git: git)
+		self.set_contacts(phone_number: phone_number, email:email, telegram: telegram)
+	end
+
+	def self.from_hash(hash_params)
+		new(
+			second_name: hash_params[:second_name],
+			first_name: hash_params[:first_name],
+			patronymic: hash_params[:patronymic],
+			id: hash_params[:id],
+			git: hash_params[:git],
+			phone_number: hash_params[:phone_number],
+			email: hash_params[:email],
+			telegram: hash_params[:telegram]
+		)
 	end
 
 	def set_contacts(phone_number: nil, email: nil, telegram: nil)
 		unless phone_number.nil? || Student.valid_phone_number?(phone_number)
-      		raise "Номер телефона некорректный"
+      		raise ArgumentError, "Номер телефона некорректный"
     	end
     	@phone_number = phone_number
 
     	unless email.nil? || Student.valid_email?(email)
-      		raise "Адрес почты некорректный"
+      		raise ArgumentError, "Адрес почты некорректный"
    		end
     	@email = email
 
     	unless telegram.nil? || Student.valid_telegram?(telegram)
-      		raise "Имя пользователя Telegram некорректное"
+      		raise ArgumentError, "Имя пользователя Telegram некорректное"
     	end
     	@telegram = telegram
 	end
@@ -51,43 +64,33 @@ class Student < Person
 
 	def second_name=(second_name)
 		unless Student.valid_fullname?(second_name)
-			raise "Фамилия должна быть указана и содержать только буквы"
+			raise ArgumentError, "Фамилия должна быть указана и содержать только буквы"
 		end
 		@second_name = second_name
 	end
 
 	def first_name=(first_name)
 		unless Student.valid_fullname?(first_name)
-			raise "Имя должно быть указано и содержать только буквы"
+			raise ArgumentError, "Имя должно быть указано и содержать только буквы"
 		end
 		@first_name = first_name
 	end
 
 	def patronymic=(patronymic)
 		unless Student.valid_fullname?(patronymic)
-			raise "Отчество должно быть указано и содержать только буквы"
+			raise ArgumentError, "Отчество должно быть указано и содержать только буквы"
 		end
 		@patronymic = patronymic
 	end
-
-  	def git_present?
-  		!git.nil?
-	end
-
-	def contact_present?
-		!phone_number.nil? || !email.nil? || !telegram.nil?
-	end  
 
 	def validate?
 		git_present? && contact_present?
 	end
 
 	def contact
-		contacts = []
-    	contacts << "номер телефона - #{phone_number}" if phone_number
-    	contacts << "почта - #{email}" if email
-    	contacts << "телеграм - #{telegram}" if telegram
-    	contacts.empty? ? "Нет контактной информации" : contacts.join(", ")
+    	return "номер телефона - #{phone_number}" if phone_number
+    	return "почта - #{email}" if email
+    	return "телеграм - #{telegram}" if telegram
 	end
 
 	def initials

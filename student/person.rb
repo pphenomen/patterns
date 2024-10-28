@@ -13,14 +13,14 @@ class Person
 	# setters 
 	def id=(id)
 		unless Person.valid_id?(id)
-			raise "ID должно быть целым числом больше нуля"
+			raise ArgumentError, "ID должно быть целым числом больше нуля"
 		end
 		@id = id 
 	end
 
   	def git=(git)
   		unless Person.valid_git?(git)
-  			raise "Git некорректный. Пример: https://github.com/username"
+  			raise ArgumentError, "Git некорректный. Пример: https://github.com/username"
   		end
   		@git = git 
   	end
@@ -33,4 +33,12 @@ class Person
 	def self.valid_git?(git)
   		git.match?(GIT_REGEX)
   	end
+
+  	def git_present?
+  		!git.nil?
+	end
+
+	def contact_present?
+		!phone_number.nil? || !email.nil? || !telegram.nil?
+	end  
 end
