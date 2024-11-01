@@ -1,18 +1,20 @@
 require './person.rb'
 
 class Student < Person
-	attr_reader :second_name, :first_name, :patronymic, :phone_number, :email, :telegram
+	attr_reader :second_name, :first_name, :patronymic, :phone_number, :email, :telegram, :birthdate
 
 	PHONE_REGEX = /\A\d{11}\z/
   	EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   	TELEGRAM_REGEX = /\A[a-zA-Z0-9_]{5,32}\z/
   	FULLNAME_REGEX = /\A[А-Яа-яЁёA-Za-z]+\z/
+  	BIRTHDATE_REGEX = /\A(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.(\d{4})\z/
 
-	def initialize(second_name:, first_name:, patronymic:, id: nil, git: nil, phone_number: nil, email: nil, telegram: nil) 
+	def initialize(second_name:, first_name:, patronymic:, id: nil,  git: nil, birthdate: nil, phone_number: nil, email: nil, telegram: nil) 
 		self.second_name = second_name
 		self.first_name = first_name
 		self.patronymic = patronymic
 		super(id: id, git: git)
+		self.birthdate = birthdate
 		self.set_contacts(phone_number: phone_number, email:email, telegram: telegram)
 	end
 
@@ -23,6 +25,7 @@ class Student < Person
 			patronymic: hash_params[:patronymic],
 			id: hash_params[:id],
 			git: hash_params[:git],
+			birthdate: hash_params[:birthdate],
 			phone_number: hash_params[:phone_number],
 			email: hash_params[:email],
 			telegram: hash_params[:telegram]
@@ -62,6 +65,10 @@ class Student < Person
 		!fullname.nil? && fullname.match?(FULLNAME_REGEX)
 	end
 
+	def self.valid_birthdate?(birthdate)
+		birthdate.match?(BIRTHDATE_REGEX)
+	end
+
 	def second_name=(second_name)
 		unless Student.valid_fullname?(second_name)
 			raise ArgumentError, "Фамилия должна быть указана и содержать только буквы"
@@ -83,14 +90,21 @@ class Student < Person
 		@patronymic = patronymic
 	end
 
+	def birthdate=(birthdate)
+		unless Student.valid_birthdate?(birthdate)
+			raise ArgumentError, "Дата рождения не соответствует формату (дд.мм.гггг)"
+		end
+		@birthdate = birthdate
+	end
+
 	def validate?
 		git_present? && contact_present?
 	end
 
 	def contact
-    	return "номер телефона - #{phone_number}" if phone_number
-    	return "почта - #{email}" if email
-    	return "телеграм - #{telegram}" if telegram
+    	return "(номер телефона) #{phone_number}" if phone_number
+    	return "(почта) #{email}" if email
+    	return "(телеграм) #{telegram}" if telegram
 	end
 
 	def initials
@@ -102,7 +116,7 @@ class Student < Person
 	end
 
 	def to_s
-		"ФИО: #{second_name} #{first_name} #{patronymic}, ID: #{id}, Git: #{git}, Контактная информация: #{contact}"
+		"ФИО: #{second_name} #{first_name} #{patronymic}, ID: #{id},  Git: #{git}, Дата рождения: #{birthdate}, Номер телефона: #{phone_number}, Почта: #{email}, Телеграм: #{telegram}"
 	end
 end
 

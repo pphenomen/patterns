@@ -8,9 +8,6 @@ class Person
     	self.git = git if git
 	end
 
-	private 
-	
-	# setters 
 	def id=(id)
 		unless Person.valid_id?(id)
 			raise ArgumentError, "ID должно быть целым числом больше нуля"
@@ -25,7 +22,6 @@ class Person
   		@git = git 
   	end
 
-  	# validators 
 	def self.valid_id?(id)
 		id.is_a?(Integer) && id > 0
 	end

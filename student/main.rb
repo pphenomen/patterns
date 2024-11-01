@@ -1,27 +1,66 @@
 require './person.rb'
 require './student.rb'
 require './student_short.rb'
+require './student_binary_tree.rb'
 
-student = Student.new(
+student1 = Student.new(
 	second_name: "Иванов", 
 	first_name: "Иван", 
 	patronymic: "Иванович", 
 	id: 1,
 	git: "https://github.com/ivanov",
+	birthdate: "01.11.2002",
 	phone_number: "89123456789",
 	email: "ivanov@mail.com",
 	telegram: "ivanov123"
 )
 
-puts("Информация о студенте:")
-puts student
+student2 = Student.new(
+	second_name: "Петров", 
+	first_name: "Петр", 
+	patronymic: "Петрович", 
+	id: 3,
+	git: "https://github.com/petrov",
+	birthdate: "24.06.2002",
+	phone_number: "89987654321",
+	email: "petrov@mail.com",
+	telegram: "petrov123"
+)
+
+student3 = Student.new(
+	second_name: "Васильев", 
+	first_name: "Василий", 
+	patronymic: "Васильевич", 
+	id: 4,
+	git: "https://github.com/vasilyev",
+	birthdate: "12.03.2002",
+	phone_number: "89287653494",
+	email: "vasilyev@mail.com",
+	telegram: "vasilyev123"
+)
+
+puts("Информация о студентах:")
+puts student1
+puts student2
+puts student3
 
 puts("Корректные данные?")
-puts student.validate?
+puts student1.validate?
+puts student2.validate?
+puts student3.validate?
 
-puts("Короткая информация:")
-student1_short = StudentShort.from_student(student)
+puts("Короткая информация о студенте 1:")
+student1_short = StudentShort.from_student(student1)
 puts student1_short
 
+puts("Короткая информация о студенте 2 из строки:")
 student2_short = StudentShort.from_string(2, "Петров П.В., https://github.com/petrov, 89993334455") 
 puts student2_short
+
+tree = StudentBinaryTree.new
+tree.insert(student1)
+tree.insert(student2)
+tree.insert(student3)
+
+puts "\nСтуденты в порядке даты рождения:"
+tree.each { |student| puts student }
