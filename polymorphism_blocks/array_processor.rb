@@ -1,49 +1,42 @@
-# Вариант 2
 class ArrayProcessor
-	attr_reader: arr
+	attr_reader :arr
 
 	def initialize(arr)
 		@arr = arr.freeze
 	end
 
-	# 2. all?
-	def all?(&block)
-		@arr.each do |element|
-			return false unless block.call(element)
-		end
+	def all?
+		@arr.each { |element| return false unless yield(element) }
 		true
 	end
 
-	# 14. flat_map
-	def flat_map(&block)
+	def flat_map
 		result = []
-		@arr.each do |element|
-      		result.concat(block.call(element))
-    	end
+		@arr.each { |element| result.concat(yield(element)) }
     	result
     end
 
-	# 26. one?
-	def one?(&block)
-  		@arr.count(&block) == 1
+	def one?
+		count = 0
+  		@arr.each do|element| 
+  			count += 1 if yield(element) 
+  			return false if count > 1
+  		end
+  		count == 1
 	end
 	
-	# 35. inject 
-	def inject(initial = nil, &block)
-		result = initial
-	  	@arr.each do |element|
-	    	result = block.call(result, element)
-	  	end
+	def inject(initial = nil)
+		result = initial || @arr.first
+	  	@arr.each { |element| result = yield(result, element) }
 	  	result
 	end
 
-	# 23. min_by
-	def min_by(&block)
+	def min_by
 		min_element = @arr.first
-	    min_value = block.call(min_element)
+	    min_value = yield(min_element)
 
 	    @arr.each do |element|
-	    	value = block.call(element)
+	    	value = yield(element)
 		    if value < min_value
 		    	min_value = value
 		        min_element = element
@@ -52,11 +45,8 @@ class ArrayProcessor
 	    min_element
 	end
     
-	# 11. find
-	def find(&block)
-    	@arr.each do |element|
-      		return element if block.call(element)
-    	end
+	def find
+    	@arr.each { |element| return element if yield(element) } 
     	nil
     end
 end
