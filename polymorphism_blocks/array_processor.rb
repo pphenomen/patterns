@@ -26,7 +26,7 @@ class ArrayProcessor
 	end
 	
 	def inject(initial = nil)
-		result = initial || @arr.first
+		result = initial.nil? ? @arr.first : initial
 	  	@arr.each { |element| result = yield(result, element) }
 	  	result
 	end
