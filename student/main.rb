@@ -21,7 +21,7 @@ student2 = Student.new(
 	patronymic: "Петрович", 
 	id: 3,
 	git: "https://github.com/petrov",
-	birthdate: "24.06.2002",
+	birthdate: "24.06.2004",
 	phone_number: "89987654321",
 	email: "petrov@mail.com",
 	telegram: "petrov123"
@@ -62,5 +62,5 @@ tree.insert(student1)
 tree.insert(student2)
 tree.insert(student3)
 
-puts "\nСтуденты в порядке даты рождения:"
+puts "\nОтсортированные даты рождения студентов по возрастанию:"
 tree.each { |student| puts student }

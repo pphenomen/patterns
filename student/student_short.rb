@@ -2,6 +2,7 @@ require './person.rb'
 
 class StudentShort < Person
 	attr_reader :surname_initials, :contact
+	 private_class_method :new
 
 	def initialize(surname_initials, id:nil, git:nil, contact:nil)
     	@surname_initials = surname_initials

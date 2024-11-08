@@ -1,6 +1,8 @@
 require './person.rb'
 
 class Student < Person
+	include Comparable
+
 	attr_reader :second_name, :first_name, :patronymic, :phone_number, :email, :telegram, :birthdate
 
 	PHONE_REGEX = /\A\d{11}\z/
@@ -110,6 +112,13 @@ class Student < Person
 	def get_info
 		"Фамилия И.О.: #{initials}; Git: #{git}, Связь: #{contact}"
 	end
+
+	def <=>(other)
+    	day1, month1, year1 = @birthdate.split('.').map(&:to_i)
+    	day2, month2, year2 = other.birthdate.split('.').map(&:to_i)
+
+    	[year1, month1, day1] <=> [year2, month2, day2]
+  	end
 
 	def to_s
 		"ФИО: #{second_name} #{first_name} #{patronymic}, ID: #{id},  Git: #{git}, Дата рождения: #{birthdate}, Номер телефона: #{phone_number}, Почта: #{email}, Телеграм: #{telegram}"

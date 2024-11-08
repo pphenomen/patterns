@@ -36,7 +36,7 @@ class StudentBinaryTree
 	private 
 
 	def insert_node(node, student)
-    	if student.birthdate < node.student.birthdate
+    	if student < node.student
       		if node.left.nil?
         		node.left = Node.new(student)
       		else
