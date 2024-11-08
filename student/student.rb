@@ -15,7 +15,7 @@ class Student < Person
 		self.patronymic = patronymic
 		super(id: id, git: git)
 		self.birthdate = birthdate
-		self.set_contacts(phone_number: phone_number, email:email, telegram: telegram)
+		self.set_contacts(phone_number: phone_number, email: email, telegram: telegram)
 	end
 
 	def self.from_hash(hash_params)
@@ -95,10 +95,6 @@ class Student < Person
 			raise ArgumentError, "Дата рождения не соответствует формату (дд.мм.гггг)"
 		end
 		@birthdate = birthdate
-	end
-
-	def validate?
-		git_present? && contact_present?
 	end
 
 	def contact
