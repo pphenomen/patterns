@@ -9,7 +9,7 @@ class DataTable
 		unless data.is_a?(Array) && data.all? { |row| row.is_a?(Array) }
 			raise ArgumentError, "Объект должен являться двумерным массивом"
 		end
-		@data = data.map(&:dup)
+		@data = data
 	end
 
 	def rows_count

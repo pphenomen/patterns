@@ -3,6 +3,7 @@ require './student.rb'
 require './student_short.rb'
 require './student_binary_tree.rb'
 require './data_table.rb'
+require './data_list.rb'
 
 student1 = Student.new(
 	second_name: "Иванов", 
@@ -66,9 +67,15 @@ student3 = Student.new(
 # puts "\nОтсортированные даты рождения студентов по возрастанию:"
 # tree.each { |student| puts student }
 
-testdata = DataTable.new([[1,2,3],[4,5,6]])
+# testdata = DataTable.new([[1,2,3],[4,5,6]])
 
-puts testdata.inspect
-puts testdata.rows_count
-puts testdata.columns_count
-puts testdata.get_element(1,2)
+# puts testdata.inspect
+# puts testdata.rows_count
+# puts testdata.columns_count
+# puts testdata.get_element(1,2)
+
+list = DataList.new([10, 20, 30])
+puts list.inspect 
+list.select(1)
+list.select(2)
+puts list.get_selected 
