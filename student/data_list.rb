@@ -28,4 +28,19 @@ class DataList
 	def get_data
 		raise NotImplementedError, "Метод не реализован в классе"
 	end
+
+	def fetch_data
+	    check_data
+	    process_data
+	end
+
+	private
+
+	def check_data
+		raise ArgumentError, "Данные отсутствуют" if data.empty?
+	end
+
+	def process_data
+		raise NotImplementedError, "Метод не реализован в классе"
+	end
 end

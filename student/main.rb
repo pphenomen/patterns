@@ -35,11 +35,11 @@ student3 = Student.new(
 	first_name: "Василий", 
 	patronymic: "Васильевич", 
 	id: 4,
-	git: "https://github.com/vasilyev",
+	git: nil,
 	birthdate: "12.03.2002",
-	phone_number: "89287653494",
-	email: "vasilyev@mail.com",
-	telegram: "vasilyev123"
+	phone_number: nil,
+	email: nil,
+	telegram: nil
 )
 
 # puts("Информация о студентах:")
@@ -83,14 +83,11 @@ student3 = Student.new(
 
 student_short1 = StudentShort.from_student(student1)
 student_short2 = StudentShort.from_student(student2)
+student_short3 = StudentShort.from_student(student3)
 
-data_list = DataListStudentShort.new([student_short1, student_short2])
+data_list = DataListStudentShort.new([student_short1, student_short2, student_short3])
 
 puts data_list.get_names.inspect
 puts data_list.get_data.inspect
 
-data_list.select(0)
-data_list.select(1)
-
-puts data_list.get_selected.inspect
-
+puts data_list.fetch_data
