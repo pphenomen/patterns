@@ -105,12 +105,12 @@ class Student < Person
     	return "(телеграм) #{telegram}" if telegram
 	end
 
-	def initials
+	def surname_initials
 		"#{second_name} #{first_name[0]}.#{patronymic[0]}."
 	end
 
 	def get_info
-		"Фамилия И.О.: #{initials}; Git: #{git}, Связь: #{contact}"
+		"Фамилия И.О.: #{surname_initials}; Git: #{git}, Связь: #{contact}"
 	end
 
 	def <=>(other)

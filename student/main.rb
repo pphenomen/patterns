@@ -5,72 +5,8 @@ require './student_binary_tree.rb'
 require './data_table.rb'
 require './data_list.rb'
 require './data_list_student_short.rb'
-
-student1 = Student.new(
-	second_name: "Иванов", 
-	first_name: "Иван", 
-	patronymic: "Иванович", 
-	id: 1,
-	git: "https://github.com/ivanov",
-	birthdate: "01.11.2002",
-	phone_number: "89123456789",
-	email: "ivanov@mail.com",
-	telegram: "ivanov123"
-)
-
-student2 = Student.new(
-	second_name: "Петров", 
-	first_name: "Петр", 
-	patronymic: "Петрович", 
-	id: 2,
-	git: "https://github.com/petrov",
-	birthdate: "24.06.2004",
-	phone_number: "89987654321",
-	email: "petrov@mail.com",
-	telegram: "petrov123"
-)
-
-student3 = Student.new(
-	second_name: "Васильев", 
-	first_name: "Василий", 
-	patronymic: "Васильевич", 
-	id: 3,
-	git: nil,
-	birthdate: "12.03.2002",
-	phone_number: nil,
-	email: nil,
-	telegram: nil
-)
-
-student4 = Student.new(
-	second_name: "Григорьев", 
-	first_name: "Григорий", 
-	patronymic: "Григорьевич", 
-	id: 4,
-	git: "https://github.com/grisha",
-	birthdate: "19.04.2004",
-	phone_number: nil,
-	email: "grisha@mail.ru",
-	telegram: nil
-)
-
-# puts("Информация о студентах:")
-# puts student1
-# puts student2
-# puts student3
-
-# puts("Корректные данные?")
-# puts student1.validate?
-# puts student2.validate?
-# puts student3.validate?
-
-# puts("Короткая информация о студенте 1:")
-# student1_short = StudentShort.from_student(student1)
-# puts student1_short
-
-# puts("Короткая информация о студенте 2 из строки:")
-# student2_short = StudentShort.from_string(2, "Петров П.В., https://github.com/petrov, 89993334455") 
-# puts student2_short
+require './students_list_json.rb'
+require 'json'
 
 # tree = StudentBinaryTree.new
 # tree.insert(student1)
@@ -93,20 +29,51 @@ student4 = Student.new(
 # list.select(2)
 # puts list.get_selected 
 
-student_short1 = StudentShort.from_student(student1)
-student_short2 = StudentShort.from_student(student2)
+# student_short1 = StudentShort.from_student(student1)
+# student_short2 = StudentShort.from_student(student2)
 
-data_list = DataListStudentShort.new([student_short1, student_short2])
+# data_list = DataListStudentShort.new([student_short1, student_short2])
 
-puts "До замены данных:"
-puts data_list.get_names.join(", ")
-puts data_list.get_data.inspect
+# puts "До замены данных:"
+# puts data_list.get_names.join(", ")
+# puts data_list.get_data.inspect
 
-new_student_short1 = StudentShort.from_student(student3)
-new_student_short2 = StudentShort.from_student(student4)
+# new_student_short1 = StudentShort.from_student(student3)
+# new_student_short2 = StudentShort.from_student(student4)
 
-new_data_list = DataListStudentShort.new([new_student_short1, new_student_short2])
+# new_data_list = DataListStudentShort.new([new_student_short1, new_student_short2])
 
-puts "\nПосле замены данных:"
-puts data_list.get_names.join(", ")
-puts new_data_list.get_data.inspect
+# puts "\nПосле замены данных:"
+# puts data_list.get_names.join(", ")
+# puts new_data_list.get_data.inspect
+
+students_list = StudentsListJSON.new(filepath: './students.json')
+
+students_list.read_from_file
+if students_list.students.nil? || students_list.students.empty?
+	puts "Ошибка: данные не загружены или файл пуст."
+else
+	puts "Данные успешно загружены."
+end
+
+if students_list.students.empty?
+	puts "Список студентов пуст."
+else
+	puts "Все студенты:"
+	students_list.students.each { |student| puts student.to_s }
+end
+
+puts "Список студентов (с 2 по 3):"
+student_short_list = students_list.get_k_n_student_short_list(2, 2)
+
+students = student_short_list.get_data 
+
+for i in 0..(students.length - 1)
+	puts students[i].to_s
+end
+
+students_list.sort_by_surname_initials
+puts "Студенты, отсортированные по фамилии и инициалам:"
+students_list.students.each { |student| puts student.to_s }
+
+puts "Количество студентов: #{students_list.get_student_short_count}"

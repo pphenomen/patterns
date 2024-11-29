@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "second_name": "Сергеев",
+    "first_name": "Александр",
+    "patronymic": "Иванович",
+    "git": "https://github.com/ivanov",
+    "birthdate": "12.01.2005",
+    "phone_number": "12345678901",
+    "email": "ivanov@example.com",
+    "telegram": "alexsiv"
+  },
+  {
+    "id": 2,
+    "second_name": "Иванов",
+    "first_name": "Иван",
+    "patronymic": "Иванович",
+    "git": "https://github.com/ivanov",
+    "birthdate": "01.11.2002",
+    "phone_number": "89123456789",
+    "email": "ivanov@mail.com",
+    "telegram": "ivanov123"
+  },
+  {
+    "id": 3,
+    "second_name": "Антонов",
+    "first_name": "Антон",
+    "patronymic": "Антонович",
+    "git": "https://github.com/antonov",
+    "birthdate": "17.04.2004",
+    "phone_number": "12345678901",
+    "email": "antonov@example.com",
+    "telegram": "antoto"
+  },
+  {
+    "id": 4,
+    "second_name": "Григорьев",
+    "first_name": "Григорий",
+    "patronymic": "Григорьевич",
+    "git": "https://github.com/grisha",
+    "birthdate": "19.04.2004",
+    "phone_number": "89323456789",
+    "email": "grisha@mail.ru",
+    "telegram": null
+  },
+  {
+    "id": 5,
+    "second_name": "Васильев",
+    "first_name": "Василий",
+    "patronymic": "Васильевич",
+    "git": null,
+    "birthdate": "12.03.2002",
+    "phone_number": null,
+    "email": null,
+    "telegram": null
+  }
+]

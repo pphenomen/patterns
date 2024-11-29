@@ -11,7 +11,7 @@ class StudentShort < Person
 	end
 
 	def self.from_student(student)
-		new(student.initials, id: student.id, git: student.git, contact: student.contact)
+		new(student.surname_initials, id: student.id, git: student.git, contact: student.contact)
 	end
 
 	def self.from_string(id, info_string)
