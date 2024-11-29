@@ -100,7 +100,7 @@ data_list = DataListStudentShort.new([student_short1, student_short2])
 
 puts "До замены данных:"
 puts data_list.get_names.join(", ")
-puts data_list.fetch_data.inspect
+puts data_list.get_data.inspect
 
 new_student_short1 = StudentShort.from_student(student3)
 new_student_short2 = StudentShort.from_student(student4)
@@ -109,4 +109,4 @@ new_data_list = DataListStudentShort.new([new_student_short1, new_student_short2
 
 puts "\nПосле замены данных:"
 puts data_list.get_names.join(", ")
-puts new_data_list.fetch_data.inspect
+puts new_data_list.get_data.inspect

@@ -2,15 +2,11 @@ class DataList
 	private attr_reader :data, :column_names
 	private attr_accessor :selected
 
-	def initialize(data)
+	def initialize(data, column_names = [])
 		self.data = data
 		self.column_names = column_names
 		@selected = []
 	end
-
-	def get_names
-    	column_names
-  	end
 
 	def set_data(new_data)
 		raise ArgumentError, "Объект должен являться массивом" unless new_data.is_a?(Array)
@@ -27,18 +23,13 @@ class DataList
 	end
 
 	def get_names
-		raise NotImplementedError, "Метод не реализован в классе"
+		create_rows
 	end
 
 	def get_data
-		raise NotImplementedError, "Метод не реализован в классе"
+		get_objects_array
 	end
-
-	def fetch_data
-	    check_data
-	    process_data
-	end
-
+	
 	private
 
 	def data=(data)
@@ -51,11 +42,11 @@ class DataList
     	@column_names = names
   	end
 
-	def check_data
-		raise ArgumentError, "Данные отсутствуют" if data.empty?
+	def create_rows
+		raise NotImplementedError, "Метод не реализован в классе"
 	end
 
-	def process_data
+	def get_objects_array
 		raise NotImplementedError, "Метод не реализован в классе"
 	end
 end
