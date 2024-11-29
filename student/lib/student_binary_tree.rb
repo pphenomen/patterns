@@ -1,4 +1,4 @@
-require './student.rb'
+require './models/student.rb'
 
 class StudentBinaryTree
 	include Enumerable

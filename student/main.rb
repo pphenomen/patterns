@@ -1,11 +1,11 @@
-require './person.rb'
-require './student.rb'
-require './student_short.rb'
-require './student_binary_tree.rb'
-require './data_table.rb'
-require './data_list.rb'
-require './data_list_student_short.rb'
-require './students_list_json.rb'
+require './models/person.rb'
+require './models/student.rb'
+require './models/student_short.rb'
+require './lib/student_binary_tree.rb'
+require './lib/data_table.rb'
+require './lib/data_list.rb'
+require './lib/data_list_student_short.rb'
+require './lib/students_list_json.rb'
 require 'json'
 
 # tree = StudentBinaryTree.new
@@ -47,7 +47,7 @@ require 'json'
 # puts data_list.get_names.join(", ")
 # puts new_data_list.get_data.inspect
 
-students_list = StudentsListJSON.new(filepath: './students.json')
+students_list = StudentsListJSON.new(filepath: './data/students.json')
 
 students_list.read_from_file
 if students_list.students.nil? || students_list.students.empty?

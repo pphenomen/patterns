@@ -1,5 +1,5 @@
 require 'json'
-require './student.rb'
+require './models/student.rb'
 require './data_list.rb'
 
 class StudentsListJSON
