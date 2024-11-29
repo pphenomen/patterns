@@ -4,6 +4,7 @@ require './student_short.rb'
 require './student_binary_tree.rb'
 require './data_table.rb'
 require './data_list.rb'
+require './data_list_student_short.rb'
 
 student1 = Student.new(
 	second_name: "Иванов", 
@@ -74,8 +75,22 @@ student3 = Student.new(
 # puts testdata.columns_count
 # puts testdata.get_element(1,2)
 
-list = DataList.new([10, 20, 30])
-puts list.inspect 
-list.select(1)
-list.select(2)
-puts list.get_selected 
+# list = DataList.new([10, 20, 30])
+# puts list.inspect 
+# list.select(1)
+# list.select(2)
+# puts list.get_selected 
+
+student_short1 = StudentShort.from_student(student1)
+student_short2 = StudentShort.from_student(student2)
+
+data_list = DataListStudentShort.new([student_short1, student_short2])
+
+puts data_list.get_names.inspect
+puts data_list.get_data.inspect
+
+data_list.select(0)
+data_list.select(1)
+
+puts data_list.get_selected.inspect
+

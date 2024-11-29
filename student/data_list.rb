@@ -8,16 +8,13 @@ class DataList
 	end
 
 	private def data=(data)
-		unless data.is_a?(Array)
-			raise ArgumentError, "Объект должен являться двумерным массивом"
-		end
+		raise ArgumentError, "Объект должен являться массивом" unless data.is_a?(Array)
 		@data = data
 	end
 
 	def select(number)
-		if number.between?(0, data.length - 1)
-			selected << number
-		end
+		raise ArgumentError, "Индекс выходит за пределы" unless number.between?(0, data.length - 1)
+		selected << number
 	end
 
 	def get_selected
