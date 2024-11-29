@@ -1,15 +1,20 @@
 class DataList
-	private attr_reader :data
+	private attr_reader :data, :column_names
 	private attr_accessor :selected
 
 	def initialize(data)
 		self.data = data
+		self.column_names = column_names
 		@selected = []
 	end
 
-	private def data=(data)
-		raise ArgumentError, "Объект должен являться массивом" unless data.is_a?(Array)
-		@data = data
+	def get_names
+    	column_names
+  	end
+
+	def set_data(new_data)
+		raise ArgumentError, "Объект должен являться массивом" unless new_data.is_a?(Array)
+		self.data = new_data
 	end
 
 	def select(number)
@@ -35,6 +40,16 @@ class DataList
 	end
 
 	private
+
+	def data=(data)
+		raise ArgumentError, "Объект должен являться массивом" unless data.is_a?(Array)
+		@data = data
+	end
+
+	def column_names=(names)
+    	raise ArgumentError, "Наименования столбцов не могут быть изменены" unless @column_names.nil?
+    	@column_names = names
+  	end
 
 	def check_data
 		raise ArgumentError, "Данные отсутствуют" if data.empty?

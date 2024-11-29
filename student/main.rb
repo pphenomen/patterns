@@ -22,7 +22,7 @@ student2 = Student.new(
 	second_name: "Петров", 
 	first_name: "Петр", 
 	patronymic: "Петрович", 
-	id: 3,
+	id: 2,
 	git: "https://github.com/petrov",
 	birthdate: "24.06.2004",
 	phone_number: "89987654321",
@@ -34,11 +34,23 @@ student3 = Student.new(
 	second_name: "Васильев", 
 	first_name: "Василий", 
 	patronymic: "Васильевич", 
-	id: 4,
+	id: 3,
 	git: nil,
 	birthdate: "12.03.2002",
 	phone_number: nil,
 	email: nil,
+	telegram: nil
+)
+
+student4 = Student.new(
+	second_name: "Григорьев", 
+	first_name: "Григорий", 
+	patronymic: "Григорьевич", 
+	id: 4,
+	git: "https://github.com/grisha",
+	birthdate: "19.04.2004",
+	phone_number: nil,
+	email: "grisha@mail.ru",
 	telegram: nil
 )
 
@@ -83,11 +95,18 @@ student3 = Student.new(
 
 student_short1 = StudentShort.from_student(student1)
 student_short2 = StudentShort.from_student(student2)
-student_short3 = StudentShort.from_student(student3)
 
-data_list = DataListStudentShort.new([student_short1, student_short2, student_short3])
+data_list = DataListStudentShort.new([student_short1, student_short2])
 
-puts data_list.get_names.inspect
-puts data_list.get_data.inspect
+puts "До замены данных:"
+puts data_list.get_names.join(", ")
+puts data_list.fetch_data.inspect
 
-puts data_list.fetch_data
+new_student_short1 = StudentShort.from_student(student3)
+new_student_short2 = StudentShort.from_student(student4)
+
+new_data_list = DataListStudentShort.new([new_student_short1, new_student_short2])
+
+puts "\nПосле замены данных:"
+puts data_list.get_names.join(", ")
+puts new_data_list.fetch_data.inspect
