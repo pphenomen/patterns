@@ -1,6 +1,6 @@
 require 'json'
-require './models/student.rb'
-require './data_list.rb'
+require_relative '../models/student'
+require_relative 'data_list'
 
 class StudentsListJSON
 	attr_accessor :filepath 

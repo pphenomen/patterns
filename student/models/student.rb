@@ -1,4 +1,4 @@
-require './person.rb'
+require_relative 'person'
 
 class Student < Person
 	include Comparable
@@ -124,4 +124,3 @@ class Student < Person
 		"ФИО: #{second_name} #{first_name} #{patronymic}, ID: #{id},  Git: #{git}, Дата рождения: #{birthdate}, Номер телефона: #{phone_number}, Почта: #{email}, Телеграм: #{telegram}"
 	end
 end
-

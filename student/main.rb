@@ -1,11 +1,11 @@
-require './models/person.rb'
-require './models/student.rb'
-require './models/student_short.rb'
-require './lib/student_binary_tree.rb'
-require './lib/data_table.rb'
-require './lib/data_list.rb'
-require './lib/data_list_student_short.rb'
-require './lib/students_list_json.rb'
+require_relative './models/person'
+require_relative './models/student'
+require_relative './models/student_short'
+require_relative './lib/student_binary_tree'
+require_relative './lib/data_table'
+require_relative './lib/data_list'
+require_relative './lib/data_list_student_short'
+require_relative './lib/students_list_json'
 require 'json'
 
 # tree = StudentBinaryTree.new
@@ -77,3 +77,22 @@ puts "Студенты, отсортированные по фамилии и и
 students_list.students.each { |student| puts student.to_s }
 
 puts "Количество студентов: #{students_list.get_student_short_count}"
+
+
+def group_by(array)
+	result = []
+
+	array.each do |element|
+		key = yield(element)
+		result[key] = [] if result[key].nil?
+		result[key] << element
+		end
+
+	result
+end 
+
+def reduce(array, initial = nil)
+	accumulator = initial.nil? ? array.first : initial
+	array.each { |element| accumulator = yield(accumulator, element) }
+	accumulator
+end
