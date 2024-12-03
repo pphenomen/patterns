@@ -1,14 +1,16 @@
 require_relative '../models/student'
 require_relative '../models/student_short'
 require_relative 'data_list'
+require_relative 'file_strategy'
 
-class StudentsListBase
-  attr_accessor :filepath 
+class StudentsList
+  attr_accessor :filepath, :strategy
   attr_reader :students
 
-  def initialize(filepath:, students: nil)
+  def initialize(filepath:, strategy:, students: nil)
       self.filepath = filepath
-      self.students = students
+      self.strategy = strategy
+      self.students = students || read_from_file
   end
 
   def students=(students)
@@ -19,11 +21,25 @@ class StudentsListBase
   end
 
   def read_from_file
-    raise NotImplementedError, "Метод должен быть реализован в подклассе"
+    data = strategy.read(filepath)
+    data.map { |student_data| Student.new(**student_data) }
   end
 
   def write_to_file
-    raise NotImplementedError, "Метод должен быть реализован в подклассе"
+    data = students.map do |student|
+      {
+        id: student.id,
+        second_name: student.second_name,
+        first_name: student.first_name,
+        patronymic: student.patronymic,
+        git: student.git,
+        birthdate: student.birthdate,
+        phone_number: student.phone_number,
+        email: student.email,
+        telegram: student.telegram
+      }
+    end
+    strategy.write(filepath, data)
   end
 
   def get_student_by_id(id)
