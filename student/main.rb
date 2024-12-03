@@ -6,7 +6,9 @@ require_relative './lib/data_table'
 require_relative './lib/data_list'
 require_relative './lib/data_list_student_short'
 require_relative './lib/students_list_json'
+require_relative './lib/students_list_yaml'
 require 'json'
+require 'yaml'
 
 # tree = StudentBinaryTree.new
 # tree.insert(student1)
@@ -47,7 +49,7 @@ require 'json'
 # puts data_list.get_names.join(", ")
 # puts new_data_list.get_data.inspect
 
-students_list = StudentsListJSON.new(filepath: './data/students.json')
+students_list = StudentsListYAML.new(filepath: './data/students.yaml')
 
 students_list.read_from_file
 if students_list.students.nil? || students_list.students.empty?
