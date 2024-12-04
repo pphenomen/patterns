@@ -1,15 +1,15 @@
 require_relative 'person'
+require 'date'
 
 class Student < Person
 	include Comparable
 
-	attr_reader :second_name, :first_name, :patronymic, :phone_number, :email, :telegram, :birthdate
+	attr_reader :second_name, :first_name, :patronymic, :birthdate, :phone_number, :email, :telegram
 
 	PHONE_REGEX = /\A\d{11}\z/
   	EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   	TELEGRAM_REGEX = /\A[a-zA-Z0-9_]{5,32}\z/
   	FULLNAME_REGEX = /\A[А-Яа-яЁёA-Za-z]+\z/
-  	BIRTHDATE_REGEX = /\A(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.(\d{4})\z/
 
 	def initialize(second_name:, first_name:, patronymic:, id: nil,  git: nil, birthdate: nil, phone_number: nil, email: nil, telegram: nil) 
 		self.second_name = second_name
@@ -67,10 +67,6 @@ class Student < Person
 		!fullname.nil? && fullname.match?(FULLNAME_REGEX)
 	end
 
-	def self.valid_birthdate?(birthdate)
-		birthdate.match?(BIRTHDATE_REGEX)
-	end
-
 	def second_name=(second_name)
 		unless Student.valid_fullname?(second_name)
 			raise ArgumentError, "Фамилия должна быть указана и содержать только буквы"
@@ -93,10 +89,13 @@ class Student < Person
 	end
 
 	def birthdate=(birthdate)
-		unless Student.valid_birthdate?(birthdate)
-			raise ArgumentError, "Дата рождения не соответствует формату (дд.мм.гггг)"
+		if birthdate.is_a?(Date)
+			@birthdate = birthdate
+		elsif birthdate.is_a?(String)
+			@birthdate = Date.parse(birthdate)
+		else
+			raise ArgumentError, "Некорректная дата рождения"
 		end
-		@birthdate = birthdate
 	end
 
 	def contact
@@ -114,10 +113,7 @@ class Student < Person
 	end
 
 	def <=>(other)
-    	day1, month1, year1 = @birthdate.split('.').map(&:to_i)
-    	day2, month2, year2 = other.birthdate.split('.').map(&:to_i)
-
-    	[year1, month1, day1] <=> [year2, month2, day2]
+    	birthdate <=> other.birthdate
   	end
 
 	def to_s
