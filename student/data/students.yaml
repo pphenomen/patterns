@@ -4,8 +4,8 @@
   :first_name: Иван
   :patronymic: Иванович
   :git: https://github.com/ivanov_git
-  :birthdate: 06.05.1995
-  :phone_number: '89161234567'
+  :birthdate: "1995-05-06"
+  :phone_number: "89161234567"
   :email: ivanov@example.com
   :telegram: ivanov_ivan
 - :id: 2
@@ -13,8 +13,8 @@
   :first_name: Петр
   :patronymic: Петрович
   :git: https://github.com/petrov_git
-  :birthdate: 02.10.1998
-  :phone_number: '89162223344'
+  :birthdate: "1998-10-02"
+  :phone_number: "89162223344"
   :email: petrov@example.com
   :telegram: petrov_petr
 - :id: 3
@@ -22,7 +22,7 @@
   :first_name: Мария
   :patronymic: Ивановна
   :git: https://github.com/smirnova_git
-  :birthdate: '09.03.1997'
-  :phone_number: '89164445566'
+  :birthdate: "1997-03-09"
+  :phone_number: "89164445566"
   :email: smirnova@example.com
   :telegram: smirnova_maria

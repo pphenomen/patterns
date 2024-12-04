@@ -5,7 +5,7 @@
     "first_name": "Александр",
     "patronymic": "Иванович",
     "git": "https://github.com/ivanov",
-    "birthdate": "12.01.2005",
+    "birthdate": "2005-01-12",
     "phone_number": "12345678901",
     "email": "ivanov@example.com",
     "telegram": "alexsiv"
@@ -16,7 +16,7 @@
     "first_name": "Иван",
     "patronymic": "Иванович",
     "git": "https://github.com/ivanov",
-    "birthdate": "01.11.2002",
+    "birthdate": "2002-11-01",
     "phone_number": "89123456789",
     "email": "ivanov@mail.com",
     "telegram": "ivanov123"
@@ -27,7 +27,7 @@
     "first_name": "Антон",
     "patronymic": "Антонович",
     "git": "https://github.com/antonov",
-    "birthdate": "17.04.2004",
+    "birthdate": "2004-04-17",
     "phone_number": "12345678901",
     "email": "antonov@example.com",
     "telegram": "antoto"
@@ -38,7 +38,7 @@
     "first_name": "Григорий",
     "patronymic": "Григорьевич",
     "git": "https://github.com/grisha",
-    "birthdate": "19.04.2004",
+    "birthdate": "2004-04-19",
     "phone_number": "89323456789",
     "email": "grisha@mail.ru",
     "telegram": null
@@ -49,7 +49,7 @@
     "first_name": "Василий",
     "patronymic": "Васильевич",
     "git": null,
-    "birthdate": "12.03.2002",
+    "birthdate": "2002-03-12",
     "phone_number": null,
     "email": null,
     "telegram": null
