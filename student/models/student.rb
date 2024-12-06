@@ -25,7 +25,7 @@ class Student < Person
 			second_name: hash_params[:second_name],
 			first_name: hash_params[:first_name],
 			patronymic: hash_params[:patronymic],
-			id: hash_params[:id],
+			id: hash_params[:id].to_i,
 			git: hash_params[:git],
 			birthdate: hash_params[:birthdate],
 			phone_number: hash_params[:phone_number],

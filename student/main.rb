@@ -7,6 +7,7 @@ require_relative './lib/data_list'
 require_relative './lib/data_list_student_short'
 require_relative './lib/students_list'
 require_relative './lib/file_strategy'
+require_relative './lib/students_list_db'
 require 'json'
 require 'yaml'
 
@@ -69,18 +70,26 @@ require 'yaml'
 # puts "Студент с id = 2: #{students.get_student_by_id(2)}"
 # puts "Количество студентов: #{students.get_student_short_count}"
 
+db = StudentsListDB.new
 
-student_hash = {
-  	id: 1,
-  	second_name: 'Иванов',
-  	first_name: 'Иван',
-  	patronymic: 'Иванович',
-  	git: 'https://github.com/ivanov',
-  	birthdate: '1995-05-06',
-  	phone_number: '89161234567',
-  	email: 'ivanov@example.com',
-  	telegram: 'ivanov_ivan'
-}
+student = Student.new(
+  	second_name: "Иванов", first_name: "Иван", patronymic: "Иванович",
+  	git: "https://github.com/ivan", birthdate: "2000-01-01",
+  	phone_number: "89012345678", email: "ivanov@mail.com", telegram: "ivan_telegram"
+)
+db.add_student(student)
 
-student = Student.from_hash(student_hash)
-puts student
+puts "Получение студента по ID"
+found_student = db.get_student_by_id(1)
+puts found_student
+
+puts "Пагинация списка студентов"
+puts db.get_k_n_student_short_list(1, 20).inspect
+
+puts "Обновление студента"
+db.replace_student_by_id(1, student)
+
+puts "Удаление студента"
+db.remove_student_by_id(22)
+
+puts "Количество студентов: #{db.get_students_count}"
