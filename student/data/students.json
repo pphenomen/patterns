@@ -53,5 +53,49 @@
     "phone_number": null,
     "email": null,
     "telegram": null
+  },
+  {
+    "id": 6,
+    "second_name": "Иванов",
+    "first_name": "Павел",
+    "patronymic": "Иванович",
+    "git": "https://github.com/pivanov",
+    "birthdate": "1999-05-06",
+    "phone_number": "89761235689",
+    "email": "pivanov@example.com",
+    "telegram": "pivanov"
+  },
+  {
+    "id": 7,
+    "second_name": "Петров",
+    "first_name": "Геогрий",
+    "patronymic": "Петрович",
+    "git": "https://github.com/geopetr",
+    "birthdate": "1997-10-07",
+    "phone_number": "89652138754",
+    "email": "geopetr@example.com",
+    "telegram": "geopetr"
+  },
+  {
+    "id": 8,
+    "second_name": "Иванов",
+    "first_name": "Павел",
+    "patronymic": "Иванович",
+    "git": "https://github.com/pivanov",
+    "birthdate": "1999-05-06",
+    "phone_number": "89761235689",
+    "email": "pivanov@example.com",
+    "telegram": "pivanov"
+  },
+  {
+    "id": 9,
+    "second_name": "Петров",
+    "first_name": "Геогрий",
+    "patronymic": "Петрович",
+    "git": "https://github.com/geopetr",
+    "birthdate": "1997-10-07",
+    "phone_number": "89652138754",
+    "email": "geopetr@example.com",
+    "telegram": "geopetr"
   }
 ]

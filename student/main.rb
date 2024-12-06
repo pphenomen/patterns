@@ -1,38 +1,42 @@
 require_relative './models/person'
 require_relative './models/student'
 require_relative './models/student_short'
-require_relative './lib/student_binary_tree'
+require_relative './tree/student_binary_tree'
 require_relative './lib/data_table'
 require_relative './lib/data_list'
 require_relative './lib/data_list_student_short'
 require_relative './lib/students_list'
-require_relative './lib/file_strategy'
-require_relative './lib/students_list_db'
-require_relative './lib/dbconfig'
+require_relative './strategy/file_strategy'
+require_relative './strategy/yaml_file_strategy'
+require_relative './strategy/json_file_strategy'
+require_relative './db/students_list_db'
+require_relative './db/dbconfig'
+require_relative './adapter/students_list_adapter'
+require_relative './adapter/students_list_db_adapter'
 require 'json'
 require 'yaml'
 
-# student1 = Student.new(
-#   second_name: 'Иванов',
-#   first_name: 'Иван',
-#   patronymic: 'Иванович',
-#   birthdate: '1995-05-06',
-#   phone_number: '89161234567',
-#   email: 'ivanov@example.com',
-#   telegram: 'ivanov_ivan',
-#   git: 'https://github.com/ivanov'
-# )
+student1 = Student.new(
+  second_name: 'Иванов',
+  first_name: 'Павел',
+  patronymic: 'Иванович',
+  birthdate: '1999-05-06',
+  phone_number: '89761235689',
+  email: 'pivanov@example.com',
+  telegram: 'pivanov',
+  git: 'https://github.com/pivanov'
+)
 
-# student2 = Student.new(
-#   second_name: 'Петров',
-#   first_name: 'Петр',
-#   patronymic: 'Петрович',
-#   birthdate: '1998-10-02',
-#   phone_number: '89162223344',
-#   email: 'petrov@example.com',
-#   telegram: 'petrov_petr',
-#   git: 'https://github.com/petrov'
-# )
+student2 = Student.new(
+  second_name: 'Петров',
+  first_name: 'Геогрий',
+  patronymic: 'Петрович',
+  birthdate: '1997-10-07',
+  phone_number: '89652138754',
+  email: 'geopetr@example.com',
+  telegram: 'geopetr',
+  git: 'https://github.com/geopetr'
+)
 
 # student3 = Student.new(
 #   second_name: 'Смирнова',
@@ -53,34 +57,18 @@ require 'yaml'
 # puts "\nОтсортированные даты рождения студентов по возрастанию:"
 # tree.each { |student| puts student }
 
+def adapter(filepath:, strategy:, students:)
+  students_list = StudentsList.new(filepath: filepath, strategy: strategy)
 
-# json_strategy = JSONFileStrategy.new
-# yaml_strategy = YAMLFileStrategy.new
+  students.each do |student|
+    students_list.add_student(student)
+  end
 
-# students = StudentsList.new(filepath: './data/students.json', strategy: json_strategy)
-# students.read_from_file
-# puts "Список студентов с JSON:"
-# students.students.each { |student| puts student.to_s }
-# puts "Студент с id = 3: #{students.get_student_by_id(3)}"
-# puts "Количество студентов: #{students.get_student_short_count}"
-
-# students = StudentsList.new(filepath: './data/students.yaml', strategy: yaml_strategy)
-# students.read_from_file
-# puts "Список студентов с YAML:"
-# students.students.each { |student| puts student.to_s }
-# puts "Студент с id = 2: #{students.get_student_by_id(2)}"
-# puts "Количество студентов: #{students.get_student_short_count}"
-
-db = DBConfig.instance
-
-result = db.execute_query("SELECT * FROM student WHERE id = $1", [3])
-
-result.each do |row|
-  puts row
+  puts "Список студентов:"
+  puts students_list.get_k_n_student_short_list(1, 10).inspect
 end
 
-# Получение второго экземпляра (тот же объект)
-db2 = DBConfig.instance
-puts db.equal?(db2) # true
+filepath = 'data/students.json'
+strategy = JSONFileStrategy.new
 
-db.close
+adapter(filepath: filepath, strategy: strategy, students: [student1, student2])

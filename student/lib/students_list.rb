@@ -1,7 +1,8 @@
 require_relative '../models/student'
 require_relative '../models/student_short'
 require_relative 'data_list'
-require_relative '../strategy/file_strategy'
+require_relative '../strategy/json_file_strategy'
+require_relative '../strategy/yaml_file_strategy'
 
 class StudentsList
   attr_accessor :filepath, :strategy
