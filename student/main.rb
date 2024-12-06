@@ -71,24 +71,16 @@ require 'yaml'
 # puts "Студент с id = 2: #{students.get_student_by_id(2)}"
 # puts "Количество студентов: #{students.get_student_short_count}"
 
-db_handler = DBConfig.new
+db = DBConfig.instance
 
-students_list_db = StudentsListDB.new(db_handler)
+result = db.execute_query("SELECT * FROM student WHERE id = $1", [3])
 
-# student = Student.new(
-#   	second_name: "Печкин", first_name: "Михаил", patronymic: "Иванович",
-#   	git: "https://github.com/pe4ka", birthdate: "2004-01-01",
-#   	phone_number: "89012346711", email: "pe4ka@mail.com", telegram: "pe4ka_telegram"
-# )
-# students_list_db.add_student(student)
+result.each do |row|
+  puts row
+end
 
-# students_list_db.remove_student_by_id(26)
+# Получение второго экземпляра (тот же объект)
+db2 = DBConfig.instance
+puts db.equal?(db2) # true
 
-# Получение студента
-retrieved_student = students_list_db.get_student_by_id(3)
-puts retrieved_student
-
-puts students_list_db.get_students_count
-
-# Закрытие соединения
-db_handler.close
+db.close

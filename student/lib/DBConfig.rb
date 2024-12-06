@@ -10,6 +10,14 @@ class DBConfig
 	    port: 5432
   	}.freeze
 
+  	@instance = nil
+
+  	def self.instance
+    	@instance ||= new
+  	end
+
+  	private_class_method :new
+
 	private attr_reader :connection
 
 	def initialize
