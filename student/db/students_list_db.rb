@@ -1,7 +1,7 @@
 require 'pg'
 require_relative '../models/student'
 require_relative '../models/student_short'
-require_relative 'data_list_student_short'
+require_relative '../lib/data_list_student_short'
 require_relative 'dbconfig'
 
 class StudentsListDB
