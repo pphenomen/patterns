@@ -116,6 +116,15 @@ class Student < Person
     	birthdate <=> other.birthdate
   	end
 
+  	def same_values?(other)
+  		return false unless other.is_a?(Student)
+  		
+  		(self.email && self.email == other.email) || 
+  		(self.phone_number && self.phone_number == other.phone_number) || 
+  		(self.telegram && self.telegram == other.telegram) || 
+  		(self.git && self.git == other.git)
+  	end
+
 	def to_s
 		"ФИО: #{second_name} #{first_name} #{patronymic}, ID: #{id},  Git: #{git}, Дата рождения: #{birthdate}, Номер телефона: #{phone_number}, Почта: #{email}, Телеграм: #{telegram}"
 	end

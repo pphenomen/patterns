@@ -16,39 +16,29 @@ require_relative './adapter/students_list_db_adapter'
 require 'json'
 require 'yaml'
 
-student1 = Student.new(
-  id: 1,
-  second_name: 'Иванов',
-  first_name: 'Павел',
-  patronymic: 'Иванович',
-  birthdate: '1999-05-06',
-  phone_number: '89761235689',
-  email: 'pivanov@example.com',
-  telegram: 'pivanov',
-  git: 'https://github.com/pivanov'
-)
+# student1 = Student.new(
+#   id: 1,
+#   second_name: 'Иванов',
+#   first_name: 'Павел',
+#   patronymic: 'Иванович',
+#   birthdate: '1999-05-06',
+#   phone_number: '89761235689',
+#   email: 'pivanov@example.com',
+#   telegram: 'pivanov',
+#   git: 'https://github.com/pivanov'
+# )
 
-student2 = Student.new(
-  id: 2,
-  second_name: 'Петров',
-  first_name: 'Геогрий',
-  patronymic: 'Петрович',
-  birthdate: '1997-10-07',
-  phone_number: '89652138754',
-  email: 'geopetr@example.com',
-  telegram: 'geopetr',
-  git: 'https://github.com/geopetr'
-)
-
-student1.git = 'https://github.com/zzz'
-student1.id = 4
-puts student1 # ne error
-
-ss = StudentShort.from_student(student2)
-ss.id = 4 
-puts student2 # error 
-
-
+# student2 = Student.new(
+#   id: 2,
+#   second_name: 'Петров',
+#   first_name: 'Геогрий',
+#   patronymic: 'Петрович',
+#   birthdate: '1997-10-07',
+#   phone_number: '89652138754',
+#   email: 'geopetr@example.com',
+#   telegram: 'geopetr',
+#   git: 'https://github.com/geopetr'
+# )
 
 # student3 = Student.new(
 #   second_name: 'Смирнова',
@@ -85,3 +75,27 @@ puts student2 # error
 
 # adapter(filepath: filepath, strategy: strategy, students: [student1, student2])
 
+student1 = Student.new(
+  id: 1,
+  second_name: 'Иванов',
+  first_name: 'Павел',
+  patronymic: 'Иванович',
+  birthdate: '1999-05-06',
+  phone_number: '89761235689',
+  email: 'pivanov@example.com',
+  telegram: 'pivanov',
+  git: 'https://github.com/pivanov'
+)
+student2 = Student.new(
+  id: 1,
+  second_name: 'Иванов',
+  first_name: 'Павел',
+  patronymic: 'Иванович',
+  birthdate: '1999-05-06',
+  phone_number: '89761235689',
+  email: 'pivanov@example.com',
+  telegram: 'pivanov',
+  git: 'https://github.com/pivanov'
+)
+
+puts student1.same_values?(student2) # => true
