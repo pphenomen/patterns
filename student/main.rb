@@ -17,6 +17,7 @@ require 'json'
 require 'yaml'
 
 student1 = Student.new(
+  id: 1,
   second_name: 'Иванов',
   first_name: 'Павел',
   patronymic: 'Иванович',
@@ -28,6 +29,7 @@ student1 = Student.new(
 )
 
 student2 = Student.new(
+  id: 2,
   second_name: 'Петров',
   first_name: 'Геогрий',
   patronymic: 'Петрович',
@@ -37,6 +39,16 @@ student2 = Student.new(
   telegram: 'geopetr',
   git: 'https://github.com/geopetr'
 )
+
+student1.git = 'https://github.com/zzz'
+student1.id = 4
+puts student1 # ne error
+
+ss = StudentShort.from_student(student2)
+ss.id = 4 
+puts student2 # error 
+
+
 
 # student3 = Student.new(
 #   second_name: 'Смирнова',
@@ -57,18 +69,19 @@ student2 = Student.new(
 # puts "\nОтсортированные даты рождения студентов по возрастанию:"
 # tree.each { |student| puts student }
 
-def adapter(filepath:, strategy:, students:)
-  students_list = StudentsList.new(filepath: filepath, strategy: strategy)
+# def adapter(filepath:, strategy:, students:)
+#   students_list = StudentsList.new(filepath: filepath, strategy: strategy)
 
-  students.each do |student|
-    students_list.add_student(student)
-  end
+#   students.each do |student|
+#     students_list.add_student(student)
+#   end
 
-  puts "Список студентов:"
-  puts students_list.get_k_n_student_short_list(1, 10).inspect
-end
+#   puts "Список студентов:"
+#   puts students_list.get_k_n_student_short_list(1, 10).inspect
+# end
 
-filepath = 'data/students.json'
-strategy = JSONFileStrategy.new
+# filepath = 'data/students.json'
+# strategy = JSONFileStrategy.new
 
-adapter(filepath: filepath, strategy: strategy, students: [student1, student2])
+# adapter(filepath: filepath, strategy: strategy, students: [student1, student2])
+

@@ -8,14 +8,14 @@ class Person
     	self.git = git if git
 	end
 
-	private def id=(id)
+	def id=(id)
 		unless Person.valid_id?(id)
 			raise ArgumentError, "ID должно быть целым числом больше нуля"
 		end
 		@id = id 
 	end
 
-  	private def git=(git)
+  	def git=(git)
   		unless Person.valid_git?(git)
   			raise ArgumentError, "Git некорректный. Пример: https://github.com/username"
   		end
