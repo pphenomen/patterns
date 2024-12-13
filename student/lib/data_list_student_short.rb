@@ -11,7 +11,7 @@ class DataListStudentShort < DataList
 	def get_objects_array
 		raise ArgumentError, "Данные отсутствуют" if data.empty?
 		data.map.with_index(1) do |object, index|
-			[index, object.surname_initials, object.git, object.contact]
+			[index + (@offset || 0), object.surname_initials, object.git, object.contact]
 		end
 	end
 end

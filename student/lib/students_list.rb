@@ -52,13 +52,18 @@ class StudentsList
 
   def get_k_n_student_short_list(k, n, data_list = nil)
     if k <= 0 || n <= 0 || !k.is_a?(Integer) || !n.is_a?(Integer)
-        raise ArgumentError, "Числа должны быть целыми и положительными"
+      raise ArgumentError, "Числа должны быть целыми и положительными"
     end
     start = (k - 1) * n
     selected = self.students[start, n] || []
     students_short = selected.map { |student| StudentShort.from_student(student) }
     data_list ||= DataListStudentShort.new(students_short)
+    data_list.set_offset(start)
     data_list
+  end
+
+  def set_offset(offset)
+    @offset = offset
   end
 
   def sort_by_surname_initials
