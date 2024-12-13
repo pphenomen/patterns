@@ -1,4 +1,4 @@
-require_relative './adapter.rb'
+require_relative './list_adapter.rb'
 require_relative '../lib/students_list.rb'
 
 class StudentsListAdapter < ListAdapter
