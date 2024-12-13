@@ -58,7 +58,7 @@ class StudentsListDB
 		result = @db_config.execute_query("DELETE FROM student WHERE id = $1", [id])
 	end
 
-	def get_students_count
+	def get_student_short_count
     	result = @db_config.execute_query("SELECT COUNT(*) AS count FROM student")
     	result[0]['count'].to_i
   	end

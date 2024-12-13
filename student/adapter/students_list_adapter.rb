@@ -1,32 +1,32 @@
 require_relative './adapter.rb'
 require_relative '../lib/students_list.rb'
 
-class StudentsListAdapter < Adapter
+class StudentsListAdapter < ListAdapter
     def initialize(filepath, strategy)
-      @students_list = StudentsList.new(filepath: filepath, strategy: strategy)
+        @students_list = StudentsList.new(filepath: filepath, strategy: strategy)
     end
   
-    def find_student_by_id(id)
-      @students_list.find_student_by_id(id)
+    def get_student_by_id(id)
+        @students_list.get_student_by_id(id)
     end
   
     def get_k_n_student_short_list(k, n)
-      @students_list.get_k_n_student_short_list(k, n)
+        @students_list.get_k_n_student_short_list(k, n)
     end
   
     def add_student(student)
-      @students_list.add_student(student)
+        @students_list.add_student(student)
     end
   
-    def update_student_by_id(id, updated_student)
-      @students_list.update_student_by_id(id, updated_student)
+    def replace_student_by_id(id, new_student)
+        @students_list.replace_student_by_id(id, new_student)
     end
   
-    def delete_student_by_id(id)
-      @students_list.delete_student_by_id(id)
+    def remove_student_by_id(id)
+        @students_list.remove_student_by_id(id)
     end
   
-    def get_student_count
-      @students_list.get_student_short_count
+    def get_student_short_count
+        @students_list.get_student_short_count
     end
-  end
+end

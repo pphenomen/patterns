@@ -9,10 +9,10 @@ class StudentsList
   attr_accessor :filepath, :strategy
   attr_reader :students
 
-  def initialize(filepath:, strategy:, students: nil)
+  def initialize(filepath:, strategy:)
       self.filepath = filepath
       self.strategy = strategy
-      self.students = read
+      self.students = strategy.read(filepath)
   end
 
   def students=(students)
