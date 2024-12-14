@@ -22,8 +22,11 @@ class DataList
 		selected
 	end
 
-	def get_names
-		create_rows
+	def build_table
+		[get_columns] + get_data
+
+	def get_columns
+		column_names
 	end
 
 	def get_data
@@ -42,7 +45,7 @@ class DataList
     	@column_names = names
   	end
 
-	def create_rows
+	def column_names
 		raise NotImplementedError, "Метод не реализован в классе"
 	end
 

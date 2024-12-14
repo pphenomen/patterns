@@ -4,8 +4,8 @@ require_relative 'data_table'
 class DataListStudentShort < DataList
 	private
 
-	def create_rows
-		["№", "surname_initials", "git", "contact"]
+	def column_names
+		["№", "Фамилия И.О.", "Git", "Контакт"]
 	end
 
 	def get_objects_array
