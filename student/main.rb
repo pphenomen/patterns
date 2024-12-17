@@ -16,29 +16,29 @@ require_relative './adapter/students_list_db_adapter'
 require 'json'
 require 'yaml'
 
-student1 = Student.new(
-  id: 1,
-  second_name: 'Иванов',
-  first_name: 'Павел',
-  patronymic: 'Иванович',
-  birthdate: '1999-05-06',
-  phone_number: '89761235689',
-  email: 'pivanov@example.com',
-  telegram: 'pivanov',
-  git: 'https://github.com/pivanov'
-)
+# student1 = Student.new(
+#   id: 1,
+#   second_name: 'Иванов',
+#   first_name: 'Павел',
+#   patronymic: 'Иванович',
+#   birthdate: '1999-05-06',
+#   phone_number: '89761235689',
+#   email: 'pivanov@example.com',
+#   telegram: 'pivanov',
+#   git: 'https://github.com/pivanov'
+# )
 
-student2 = Student.new(
-  id: 2,
-  second_name: 'Петров',
-  first_name: 'Геогрий',
-  patronymic: 'Петрович',
-  birthdate: '1997-10-07',
-  phone_number: '89652138754',
-  email: 'geopetr@example.com',
-  telegram: 'geopetr',
-  git: 'https://github.com/geopetr'
-)
+# student2 = Student.new(
+#   id: 2,
+#   second_name: 'Петров',
+#   first_name: 'Геогрий',
+#   patronymic: 'Петрович',
+#   birthdate: '1997-10-07',
+#   phone_number: '89652138754',
+#   email: 'geopetr@example.com',
+#   telegram: 'geopetr',
+#   git: 'https://github.com/geopetr'
+# )
 
 # student3 = Student.new(
 #   second_name: 'Смирнова',
@@ -72,24 +72,39 @@ student2 = Student.new(
 
 # adapter(filepath: filepath, strategy: strategy, students: [student1, student2])
 
-filepath1 = 'data/students.json'
-strategy1 = JSONFileStrategy.new
-filepath2 = 'data/students.yaml'
-strategy2 = YAMLFileStrategy.new
-students_list = StudentsList.new(filepath: filepath2, strategy: strategy2)
+# filepath1 = 'data/students.json'
+# strategy1 = JSONFileStrategy.new
+# filepath2 = 'data/students.yaml'
+# strategy2 = YAMLFileStrategy.new
+# students_list = StudentsList.new(filepath: filepath2, strategy: strategy2)
 
-begin
-  students_list.add_student(student1)
-  students_list.add_student(student2)
-  students_list.write
-  puts "Студенты записаны в файл: #{filepath2}"
+# begin
+#   students_list.add_student(student1)
+#   students_list.add_student(student2)
+#   students_list.write
+#   puts "Студенты записаны в файл: #{filepath2}"
 
-  students_list.read
-  puts "Список студентов после чтения из файла:"
-  students_list.students.each do |student|
-    puts "#{student.id}. #{student.surname_initials} - Git: #{student.git}, Email: #{student.email}"
-  end
-rescue => e
-  puts "Ошибка: #{e.message}"
-end
+#   students_list.read
+#   puts "Список студентов после чтения из файла:"
+#   students_list.students.each do |student|
+#     puts "#{student.id}. #{student.surname_initials} - Git: #{student.git}, Email: #{student.email}"
+#   end
+# rescue => e
+#   puts "Ошибка: #{e.message}"
+# end
 
+repeat_student = Student.new(
+  id: 1,
+  second_name: 'Иванов',
+  first_name: 'Иван',
+  patronymic: 'Иванович',
+  birthdate: '2000-01-01',
+  phone_number: '89012345678',
+  email: 'ivanov@example.com',
+  telegram: 'ivan_telegram',
+  git: 'https://github.com/ivan'
+)
+db_config = DBConfig.instance
+
+con = StudentsListDB.new(db_config)
+con.add_student(repeat_student) # => error
