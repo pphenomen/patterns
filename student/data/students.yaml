@@ -1,28 +1,19 @@
 ---
 - :id: 1
   :second_name: Иванов
-  :first_name: Иван
+  :first_name: Павел
   :patronymic: Иванович
-  :git: https://github.com/ivanov_git
-  :birthdate: "1995-05-06"
-  :phone_number: "89161234567"
-  :email: ivanov@example.com
-  :telegram: ivanov_ivan
+  :git: https://github.com/pivanov
+  :birthdate: 1999-05-06
+  :phone_number: '89761235689'
+  :email: pivanov@example.com
+  :telegram: pivanov
 - :id: 2
   :second_name: Петров
-  :first_name: Петр
+  :first_name: Геогрий
   :patronymic: Петрович
-  :git: https://github.com/petrov_git
-  :birthdate: "1998-10-02"
-  :phone_number: "89162223344"
-  :email: petrov@example.com
-  :telegram: petrov_petr
-- :id: 3
-  :second_name: Смирнова
-  :first_name: Мария
-  :patronymic: Ивановна
-  :git: https://github.com/smirnova_git
-  :birthdate: "1997-03-09"
-  :phone_number: "89164445566"
-  :email: smirnova@example.com
-  :telegram: smirnova_maria
+  :git: https://github.com/geopetr
+  :birthdate: 1997-10-07
+  :phone_number: '89652138754'
+  :email: geopetr@example.com
+  :telegram: geopetr

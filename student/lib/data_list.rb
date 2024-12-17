@@ -24,6 +24,7 @@ class DataList
 
 	def build_table
 		[get_columns] + get_data
+	end
 
 	def get_columns
 		column_names

@@ -6,42 +6,27 @@ require_relative '../strategy/json_file_strategy'
 require_relative '../strategy/yaml_file_strategy'
 
 class StudentsList
-  attr_accessor :filepath, :strategy
   attr_reader :students
 
   def initialize(filepath:, strategy:)
-      self.filepath = filepath
-      self.strategy = strategy
-      self.students = strategy.read(filepath)
+    @filepath = filepath
+    @strategy = strategy
+    self.students = []
   end
 
   def students=(students)
-      unless students.nil? || students.is_a?(Array) 
-        raise ArgumentError, "Неверный тип данных"
-      end
-      @students = students
+    unless students.nil? || students.is_a?(Array) 
+      raise ArgumentError, "Неверный тип данных"
+    end
+    @students = students
   end
 
   def read
-    data = strategy.read(filepath)
-    data.map { |student_data| Student.new(**student_data) }
+    self.students = @strategy.read(@filepath)
   end
 
   def write
-    data = students.map do |student|
-      {
-        id: student.id,
-        second_name: student.second_name,
-        first_name: student.first_name,
-        patronymic: student.patronymic,
-        git: student.git,
-        birthdate: student.birthdate,
-        phone_number: student.phone_number,
-        email: student.email,
-        telegram: student.telegram
-      }
-    end
-    strategy.write(filepath, data)
+    @strategy.write(@filepath, self.students)
   end
 
   def get_student_by_id(id)

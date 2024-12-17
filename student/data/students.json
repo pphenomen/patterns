@@ -1,94 +1,17 @@
 [
   {
     "id": 1,
-    "second_name": "Сергеев",
-    "first_name": "Александр",
+    "second_name": "Иванов",
+    "first_name": "Павел",
     "patronymic": "Иванович",
-    "git": "https://github.com/ivanov",
-    "birthdate": "2005-01-12",
-    "phone_number": "12345678901",
-    "email": "ivanov@example.com",
-    "telegram": "alexsiv"
+    "git": "https://github.com/pivanov",
+    "birthdate": "1999-05-06",
+    "phone_number": "89761235689",
+    "email": "pivanov@example.com",
+    "telegram": "pivanov"
   },
   {
     "id": 2,
-    "second_name": "Иванов",
-    "first_name": "Иван",
-    "patronymic": "Иванович",
-    "git": "https://github.com/ivanov",
-    "birthdate": "2002-11-01",
-    "phone_number": "89123456789",
-    "email": "ivanov@mail.com",
-    "telegram": "ivanov123"
-  },
-  {
-    "id": 3,
-    "second_name": "Антонов",
-    "first_name": "Антон",
-    "patronymic": "Антонович",
-    "git": "https://github.com/antonov",
-    "birthdate": "2004-04-17",
-    "phone_number": "12345678901",
-    "email": "antonov@example.com",
-    "telegram": "antoto"
-  },
-  {
-    "id": 4,
-    "second_name": "Григорьев",
-    "first_name": "Григорий",
-    "patronymic": "Григорьевич",
-    "git": "https://github.com/grisha",
-    "birthdate": "2004-04-19",
-    "phone_number": "89323456789",
-    "email": "grisha@mail.ru",
-    "telegram": null
-  },
-  {
-    "id": 5,
-    "second_name": "Васильев",
-    "first_name": "Василий",
-    "patronymic": "Васильевич",
-    "git": null,
-    "birthdate": "2002-03-12",
-    "phone_number": null,
-    "email": null,
-    "telegram": null
-  },
-  {
-    "id": 6,
-    "second_name": "Иванов",
-    "first_name": "Павел",
-    "patronymic": "Иванович",
-    "git": "https://github.com/pivanov",
-    "birthdate": "1999-05-06",
-    "phone_number": "89761235689",
-    "email": "pivanov@example.com",
-    "telegram": "pivanov"
-  },
-  {
-    "id": 7,
-    "second_name": "Петров",
-    "first_name": "Геогрий",
-    "patronymic": "Петрович",
-    "git": "https://github.com/geopetr",
-    "birthdate": "1997-10-07",
-    "phone_number": "89652138754",
-    "email": "geopetr@example.com",
-    "telegram": "geopetr"
-  },
-  {
-    "id": 8,
-    "second_name": "Иванов",
-    "first_name": "Павел",
-    "patronymic": "Иванович",
-    "git": "https://github.com/pivanov",
-    "birthdate": "1999-05-06",
-    "phone_number": "89761235689",
-    "email": "pivanov@example.com",
-    "telegram": "pivanov"
-  },
-  {
-    "id": 9,
     "second_name": "Петров",
     "first_name": "Геогрий",
     "patronymic": "Петрович",
